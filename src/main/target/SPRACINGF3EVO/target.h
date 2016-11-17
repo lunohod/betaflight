@@ -26,6 +26,11 @@
 #define BEEPER                  PC15
 #define BEEPER_INVERTED
 
+// VTX monitor task
+#define VTX_CONTROL
+// VTX device type
+#define VTX_SMARTAUDIO
+
 #define USE_EXTI
 #define MPU_INT_EXTI            PC13
 #define EXTI15_10_CALLBACK_HANDLER_COUNT 2 // MPU_INT, SDCardDetect

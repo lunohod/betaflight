@@ -10,5 +10,6 @@ TARGET_SRC = \
             drivers/serial_usb_vcp.c \
             drivers/transponder_ir.c \
             drivers/transponder_ir_stm32f30x.c \
-            io/transponder_ir.c
+            io/transponder_ir.c \
+            drivers/vtx_smartaudio.c
 
