@@ -262,27 +262,27 @@ local gState = PAGE_DISPLAY
 local powerLevels = { 25, 200, 500, 800 }
 
 local function incChan(val, inc)
-	val = val + inc
-	if val < 32 then
-		val = 32
-	elseif val > 39 then
-		val = 39
-   end
+    val = val + inc
+    if val < 32 then
+        val = 32
+    elseif val > 39 then
+        val = 39
+    end
 
-   return val
+    return val
 end
 
 local function incPower(val, inc)
-	val = val + inc
-	if val < 0 then
-		val = 0
-	end
+    val = val + inc
+    if val < 0 then
+        val = 0
+    end
 
-	if val > #(powerLevels)-1 then
-		val = #(powerLevels)-1
-	end
-		
-	return val
+    if val > #(powerLevels)-1 then
+        val = #(powerLevels)-1
+    end
+
+    return val
 end
 
 local SetupPages = {
@@ -350,6 +350,11 @@ local function processMspReply(cmd,rx_buf)
    
    if cmd ~= page.read then
       return
+   end
+
+   if #(rx_buf) == 0 then
+       page.values = nil
+       return
    end
 
    page.values = {}
