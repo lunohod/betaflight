@@ -59,6 +59,7 @@
 #include "drivers/io.h"
 #include "drivers/exti.h"
 #include "drivers/vtx_soft_spi_rtc6705.h"
+#include "drivers/vtx_smartaudio.h"
 
 #ifdef USE_BST
 #include "bus_bst.h"
@@ -541,6 +542,10 @@ void init(void)
     gyroSetCalibrationCycles();
 #ifdef BARO
     baroSetCalibrationCycles(CALIBRATING_BARO_CYCLES);
+#endif
+
+#ifdef VTX_SMARTAUDIO
+    smartAudioInit();
 #endif
 
     // start all timers

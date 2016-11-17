@@ -32,6 +32,7 @@
 #include "drivers/light_led.h"
 #include "drivers/system.h"
 #include "drivers/gyro_sync.h"
+#include "drivers/vtx_smartaudio.h"
 
 #include "sensors/sensors.h"
 #include "sensors/boardalignment.h"

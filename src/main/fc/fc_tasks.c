@@ -261,6 +261,9 @@ void fcTasksInit(void)
     setTaskEnabled(TASK_CMS, feature(FEATURE_OSD) || feature(FEATURE_DASHBOARD));
 #endif
 #endif
+#ifdef VTX_CONTROL
+    setTaskEnabled(TASK_VTX_CONTROL, true);
+#endif
 }
 
 cfTask_t cfTasks[TASK_COUNT] = {
@@ -427,6 +430,15 @@ cfTask_t cfTasks[TASK_COUNT] = {
         .taskFunc = cmsHandler,
         .desiredPeriod = 1000000 / 60,          // 60 Hz
         .staticPriority = TASK_PRIORITY_LOW,
+    },
+#endif
+
+#ifdef VTX_CONTROL
+    [TASK_VTX_CONTROL] = {
+        .taskName = "VTX",
+        .taskFunc = taskVtxControl,
+        .desiredPeriod = 1000000 / 5,         // 5 Hz, 200ms: TX 12B=25ms@4800 , SmartAudio response in 60ms, RX 12B=25ms@4800
+        .staticPriority = TASK_PRIORITY_IDLE,
     },
 #endif
 };

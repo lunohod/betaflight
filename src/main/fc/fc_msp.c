@@ -775,6 +775,15 @@ static bool mspFcProcessOutCommand(uint8_t cmdMSP, sbuf_t *dst, mspPostProcessFn
         }
         break;
 
+#ifdef VTX_SMARTAUDIO
+    case MSP_VTX_CONFIG:
+        if (masterConfig.vtx_valid) {
+            sbufWriteU8(dst, masterConfig.vtx_power);
+            sbufWriteU8(dst, masterConfig.vtx_channel);
+        }
+        break;
+#endif
+
     case MSP_MISC:
         sbufWriteU16(dst, masterConfig.rxConfig.midrc);
 
@@ -1565,6 +1574,17 @@ static mspResult_e mspFcProcessInCommand(uint8_t cmdMSP, sbuf_t *src)
             current_vtx_channel = masterConfig.vtx_channel;
             rtc6705_soft_spi_set_channel(vtx_freq[current_vtx_channel]);
         }
+        break;
+#endif
+
+#ifdef VTX_SMARTAUDIO
+    case MSP_SET_VTX_CONFIG:
+        tmp = sbufReadU8(src);
+        if  (tmp < 4)
+            masterConfig.vtx_power = tmp;
+        tmp = sbufReadU8(src);
+        if  (tmp < 40)
+            masterConfig.vtx_channel = tmp;
         break;
 #endif
 
