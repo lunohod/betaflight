@@ -52,6 +52,12 @@
 #define BEEPER                  NONE
 #endif
 
+// VTX monitor task
+#define VTX_CONTROL
+// VTX device type
+#define VTX_SMARTAUDIO
+
+
 // PC0 used as inverter select GPIO
 #define INVERTER                PC0
 #define INVERTER_USART          USART1
